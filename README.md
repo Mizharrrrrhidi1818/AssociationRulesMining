@@ -38,3 +38,7 @@ Sales total per order (summed across line items)
 Categorical metadata: Category (e.g., Binders, Furniture, Technology), Segment (Consumer/Corporate/Home Office), Ship Mode, Region, and Order Date
 One row was missing Postal Code (Burlington, VT), which I manually imputed as 5401 after verifying it matched the city/state combination, this is standard practice for small-scale imputation when domain knowledge supports it.
 
+# Conclusion
+
+This analysis potray that attribute value association rule mining transcends traditional product-based approaches by revealing the behavioral logic behind purchases. Rather than prescribing generic “frequently bought together” prompts, we now have statistically validated, operationally actionable profiles each with clear strategic levers. Future work will integrate these rules into a real time recommendation engine and A/B test their impact on basket size and customer lifetime value.
+
