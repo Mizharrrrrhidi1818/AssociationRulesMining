@@ -1,7 +1,7 @@
 # Overview
-We have association rules project where we select any transactional dataset from https://www.kaggle.com/datasets or https://archive.ics.uci.edu/ml/index.php. 
+We have a project about association rules where we select any transactional dataset from https://www.kaggle.com/datasets or https://archive.ics.uci.edu/ml/index.php. 
 
-The project conduct an association rule analysis, including: enerating frequent item sets and association rules for three different pairs of support and confidence thresholds, comparing the impact of changing the thresholds on the number and quality of rules, identifying the most interesting rules and their potential significance in the context of the data.
+The project conduct an association rule analysis, including: generating frequent item sets and association rules for three different pairs of support and confidence thresholds, comparing the impact of changing the thresholds on the number and quality of rules, identifying the most interesting rules and their potential significance in the context of the data.
 
 # Introduction
 In today’s competitive retail landscape, understanding why customers dont buy just what they buy is critical for strategic decision-making. Traditional market basket analysis, which mines co-purchases of specific products (e.g., “Binders → Paper”), often struggles with sparsity and limited generalizability, especially in catalogs with thousands of SKUs. To address this, this study adopts an attribute-value association rule mining approach on the Sales Forecasting dataset (Kaggle: rohitsahoo/sales-forecasting), treating each order not as a list of products, but as a behavioral profile defined by semantic features, such as order value tier, shipping urgency, customer segment, and time of purchase. By doing so, we uncover high-level purchasing behaviors that directly inform bundling strategies, logistics optimization, and retention campaigns.
