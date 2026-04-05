@@ -17,9 +17,9 @@ The analysis follows a systematic pipeline aligned with best practices in ARM:
 1. Preprocessing Data
 Before we analyze the data deeply, we must accomplish preprocessing data, such as handling missing values, duplicates, outliers, or noise.
 2. Transaction Construction
-["Sales_bin=[100,300)", "Order_Weekday=Monday", "Segment=Corporate", "Category=Technology", ...]
+"``[\"Sales_bin=[100,300)\", \"Order_Weekday=Monday\", \"Segment=Corporate\", \"Category=Technology\", ...]``\n"
 3. Binary encoding
-Using mlxtend.preprocessing.TransactionEncoder, transactions are converted into a binary matrix (orders × items), where 1 = presence, 0 = absence.
+"Using ``mlxtend.preprocessing.TransactionEncoder``, transactions are converted into a binary matrix (orders × items), where ``1`` = presence, ``0`` = absence.\n",
 4. Apriori Algorithm
 Using the mlxtend library, we applied the Apriori algorithm to the binary-encoded transaction matrix, systematically evaluating three threshold configurations to balance coverage and signal strength:
 
@@ -32,7 +32,7 @@ Let's try to execute this project
 
 # Dataset Description
 
-The dataset (train.csv, 9,994 rows) resembles the well-known Superstore schema and covers U.S. office supply sales from 2015 to 2018. After grouping by Order ID, We worked with 4,922 unique transactions, each containing:
+The dataset (**[train.csv](https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting)**, 9,994 rows) resembles the well-known Superstore schema and covers U.S. office supply sales from 2015 to 2018. After grouping by Order ID, We worked with 4,922 unique transactions, each containing:
 
 Sales total per order (summed across line items)
 Categorical metadata: Category (e.g., Binders, Furniture, Technology), Segment (Consumer/Corporate/Home Office), Ship Mode, Region, and Order Date
