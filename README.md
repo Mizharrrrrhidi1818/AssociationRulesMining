@@ -1,44 +1,105 @@
-# Overview
-We have a project about association rules where we select any transactional dataset from https://www.kaggle.com/datasets or https://archive.ics.uci.edu/ml/index.php. 
-
-The project conduct an association rule analysis, including: generating frequent item sets and association rules for three different pairs of support and confidence thresholds, comparing the impact of changing the thresholds on the number and quality of rules, identifying the most interesting rules and their potential significance in the context of the data.
-
-# Introduction
-In today’s competitive retail landscape, understanding why customers dont buy just what they buy is critical for strategic decision-making. Traditional market basket analysis, which mines co-purchases of specific products (e.g., “Binders → Paper”), often struggles with sparsity and limited generalizability, especially in catalogs with thousands of SKUs. To address this, this study adopts an attribute-value association rule mining approach on the Sales Forecasting dataset (Kaggle: rohitsahoo/sales-forecasting), treating each order not as a list of products, but as a behavioral profile defined by semantic features, such as order value tier, shipping urgency, customer segment, and time of purchase. By doing so, we uncover high-level purchasing behaviors that directly inform bundling strategies, logistics optimization, and retention campaigns.
-
-Association Rule Mining (ARM) is a powerful unsupervised learning technique used to uncover hidden, actionable patterns in transactional data, commonly known as Market Basket Analysis.
-
-This approach let me uncover not just product affinities, but decision contexts: urgency, value tier, segment, and timing, all of which open doors to smarter bundling, logistics tuning, and retention strategies.
-
-# Methodology
-
-The analysis follows a systematic pipeline aligned with best practices in ARM:
-
-1. Preprocessing Data
-Before we analyze the data deeply, we must accomplish preprocessing data, such as handling missing values, duplicates, outliers, or noise.
-2. Transaction Construction
-"``[\"Sales_bin=[100,300)\", \"Order_Weekday=Monday\", \"Segment=Corporate\", \"Category=Technology\", ...]``\n"
-3. Binary encoding
-"Using ``mlxtend.preprocessing.TransactionEncoder``, transactions are converted into a binary matrix (orders × items), where ``1`` = presence, ``0`` = absence.\n",
-4. Apriori Algorithm
-Using the mlxtend library, we applied the Apriori algorithm to the binary-encoded transaction matrix, systematically evaluating three threshold configurations to balance coverage and signal strength:
-
-- Strict (support ≥ 0.05, confidence ≥ 0.70), designed for high certainty, high-frequency rules, yielded zero rules—indicating that real world purchasing behaviors in this dataset are too diverse to meet such conservative criteria.
-- Balanced (support ≥ 0.03, confidence ≥ 0.60), selected as the primary configuration, produced 24 high quality rules with an average lift of 1.35 and a maximum lift of 1.86, demonstrating strong, non random associations.
-- Exploratory (support ≥ 0.01, confidence ≥ 0.50), while generating 342 rules, showed a marked decline in average lift (1.15), suggesting increased noise, though it did reveal high, outlier rules (e.g., lift = 2.10).
-All rules were post-filtered to retain only those with lift > 1.0, ensuring that only positively associated patterns—those occurring more frequently together than expected by chance, were considered.
-
-Let's try to execute this project
-
 # Dataset Description
 
-The dataset (**[train.csv](https://www.kaggle.com/datasets/rohitsahoo/sales-forecasting)**, 9,994 rows) resembles the well-known Superstore schema and covers U.S. office supply sales from 2015 to 2018. After grouping by Order ID, We worked with 4,922 unique transactions, each containing:
+## Overview
 
-Sales total per order (summed across line items)
-Categorical metadata: Category (e.g., Binders, Furniture, Technology), Segment (Consumer/Corporate/Home Office), Ship Mode, Region, and Order Date
-One row was missing Postal Code (Burlington, VT), which I manually imputed as 5401 after verifying it matched the city/state combination, this is standard practice for small-scale imputation when domain knowledge supports it.
+This dataset is designed for educational purposes to demonstrate the CART decision tree algorithm with manual Gini impurity calculations.
 
-# Conclusion
+## Dataset Statistics
 
-This analysis potray that attribute value association rule mining transcends traditional product-based approaches by revealing the behavioral logic behind purchases. Rather than prescribing generic “frequently bought together” prompts, we now have statistically validated, operationally actionable profiles each with clear strategic levers. Future work will integrate these rules into a real time recommendation engine and A/B test their impact on basket size and customer lifetime value.
+- **Total Records**: 8
+- **Features**: 4 (2 categorical, 2 numerical, 1 boolean)
+- **Target Variable**: 1 (binary classification)
+- **Class Distribution**: Balanced (4 yes, 4 no)
 
+## Features
+
+### 1. computer (Categorical)
+- **Type**: Nominal categorical
+- **Values**: good, medium, poor
+- **Description**: Quality rating of the computer
+- **Distribution**:
+  - good: 3 records (IDs: 1, 4, 7)
+  - medium: 3 records (IDs: 2, 5, 8)
+  - poor: 2 records (IDs: 3, 6)
+
+### 2. income (Numerical)
+- **Type**: Continuous numerical
+- **Range**: 490 - 8968
+- **Mean**: ~2196
+- **Median**: ~710
+- **Description**: Customer's income (in arbitrary units)
+- **Note**: Contains one outlier (8968) to test robustness
+
+### 3. price (Numerical)
+- **Type**: Continuous numerical
+- **Range**: 650 - 9006
+- **Mean**: ~2757
+- **Description**: Product price (in arbitrary units)
+- **Note**: Contains two high-value items (8000, 9006)
+
+### 4. student (Boolean)
+- **Type**: Binary boolean
+- **Values**: TRUE, FALSE
+- **Description**: Whether the customer is a student
+- **Distribution**:
+  - TRUE: 3 records (IDs: 2, 6, 7)
+  - FALSE: 5 records (IDs: 1, 3, 4, 5, 8)
+
+## Target Variable
+
+### BUY (Binary Classification)
+- **Type**: Binary categorical
+- **Values**: yes, no
+- **Description**: Whether the customer purchased the product
+- **Distribution**:
+  - yes: 4 records (IDs: 3, 4, 5, 7)
+  - no: 4 records (IDs: 1, 2, 6, 8)
+
+## Complete Dataset
+
+| ID | computer | income | price | student | BUY |
+|----|----------|--------|-------|---------|-----|
+| 1  | good     | 500    | 850   | FALSE   | no  |
+| 2  | medium   | 800    | 900   | TRUE    | no  |
+| 3  | poor     | 490    | 1000  | FALSE   | yes |
+| 4  | good     | 700    | 9006  | FALSE   | yes |
+| 5  | medium   | 8968   | 8000  | FALSE   | yes |
+| 6  | poor     | 657    | 700   | TRUE    | no  |
+| 7  | good     | 640    | 650   | TRUE    | yes |
+| 8  | medium   | 720    | 950   | FALSE   | no  |
+
+## Characteristics
+
+### Why This Dataset?
+
+1. **Small Size**: Easy to verify calculations manually
+2. **Balanced Classes**: No class imbalance issues
+3. **Mixed Types**: Tests handling of categorical and numerical features
+4. **Outliers**: Contains high-value items to test split robustness
+5. **Real-World Scenario**: Simulates a purchase decision problem
+
+### Educational Value
+
+- **Manual Verification**: All 8 records can be tracked through splits
+- **Clear Patterns**: Obvious splits exist (e.g., price > 4250)
+- **Multiple Features**: Demonstrates feature selection
+- **Impure Nodes**: Shows need for multiple iterations
+
+### Potential Splits
+
+The dataset is designed so that:
+- **Best Iteration 1 Split**: `price <= 4250` (Gini = 0.333)
+- **Best Iteration 2 Split**: `income <= 645` (Gini = 0.222)
+- **Final Tree Depth**: 3 levels
+- **Perfect Classification**: 100% accuracy achievable
+
+## Data Quality
+
+- **No Missing Values**: All records complete
+- **No Duplicates**: Each record is unique
+- **Consistent Types**: All values match expected types
+- **Logical Values**: All numbers are positive and reasonable
+
+---
+
+**Note**: This is a synthetic dataset created for educational purposes. The values and relationships are designed to demonstrate the CART algorithm clearly.
