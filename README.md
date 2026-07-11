@@ -1,5 +1,9 @@
 # Association Rule Mining: Behavioral Patterns in Office Retail
 
+[![Python Version](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Scikit-learn](https://img.shields.io/badge/scikit--learn-1.0%2B-orange.svg)](https://scikit-learn.org/)
+
 **Author:** Tantri Mizhar Arofahidi  
 **Institution:** University of Silesia in Katowice 
 **Date:** December 2025  
