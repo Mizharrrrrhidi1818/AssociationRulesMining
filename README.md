@@ -1,7 +1,7 @@
 # Association Rule Mining: Behavioral Patterns in Office Retail
 
-**Author:** Tantri Mizhar  
-**Institution:** Institut Teknologi Sepuluh Nopember (ITS) Surabaya  
+**Author:** Tantri Mizhar Arofahidi  
+**Institution:** University of Silesia in Katowice 
 **Date:** December 2025  
 **Live Code:** [View Python Script](association_rules.py) | [View Requirements](requirements.txt)
 
